@@ -9,4 +9,8 @@ I will use Solidity to do a whole bunch of smart contracts as well as use Javasc
 
 ## Getting started
   - Some knowledge to Javascript frameworks like Reactjs and Nextjs for building use interfaces
+  - Solidity Intermediate knowledge
+  - Smart contracts Intermediate knowledge
+  - Blockchain Logic
 
+##
