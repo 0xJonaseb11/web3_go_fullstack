@@ -13,4 +13,7 @@ I will use Solidity to do a whole bunch of smart contracts as well as use Javasc
   - Smart contracts Intermediate knowledge
   - Blockchain Logic
 
-##
+
+<hr>
+
+@Jonas-sebera
