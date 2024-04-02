@@ -1,4 +1,16 @@
+
+# compiler files
+out
+build
+cache
+# .env
 .env
+
+# github
 .github
+
+# vscode
 .vscode
+
+# tests
 coverage
