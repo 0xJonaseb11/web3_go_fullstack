@@ -1,8 +1,8 @@
-Author: @Jonas-sebera
+# 3.0_fullstack
 
 Web3.0 Fullstack course | Intermediate To Expert
 
-# About
+## About
 
 This marks my fullstack web3.0 development journey
 It is comprised of Solidity and Javascript.
@@ -11,10 +11,10 @@ I will use Solidity to do a whole bunch of smart contracts as well as use Javasc
 ## Getting started
 
 - Some knowledge to Javascript frameworks like Reactjs and Nextjs for building use interfaces
-  - Solidity Intermediate knowledge
-  - Smart contracts Intermediate knowledge
-  - Blockchain Logic
+- Solidity Intermediate knowledge
+- Smart contracts Intermediate knowledge
+- Blockchain Logic
 
 -----------
 
-@Jonas-sebera
+@Jaz-3-0
