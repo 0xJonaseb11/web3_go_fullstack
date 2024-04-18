@@ -9,6 +9,7 @@ contract SimpleStorage {
 
     /**
     * Mapping is a data structure where a key is "mapped" to a sinlge value
+    * When mapping is used, everything is initialized to zero
      */
     mapping(string => uint256) public nameToFavoriteNumber; 
 
@@ -23,10 +24,10 @@ contract SimpleStorage {
 
     // store value
     function store(uint256 _favoriteNumber) public {
-     favoritenumber = _favoriteNumber;
+     favoriteNumber = _favoriteNumber;
     }
 
-    function retrieve() public view return(uint256) {
+    function retrieve() public view returns (uint256) {
      return favoriteNumber;
     }
 
