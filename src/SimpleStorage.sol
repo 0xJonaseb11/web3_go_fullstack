@@ -5,20 +5,53 @@ contract SimpleStorage {
     
     // state variables
     uint256 favoriteNumber;
-    Person public person = Person({favoriteNumber: 5, name: "Jonas"});
+    // Person public person = Person({favoriteNumber: 5, name: "Jonas"});
+
+    /**
+    * Mapping is a data structure where a key is "mapped" to a sinlge value
+     */
+    mapping(string => uint256) public nameToFavoriteNumber; 
 
 
     struct People {
         uint256 favoriteNumber;
         string name;
     }
+    
+    // uint256[] public favoriteNumbersList;
+    People[] public people;
+
+    // store value
+    function store(uint256 _favoriteNumber) public {
+     favoritenumber = _favoriteNumber;
+    }
+
+    function retrieve() public view return(uint256) {
+     return favoriteNumber;
+    }
+
+    // let's add people to our array
+    function addPerson(string memory _name, uint256 _favoriteNumber) public {
+        People memory   newPerson = People({favoriteNumber: _favoriteNumber, name: _name}); // same as below
+        people.push(People(_favoriteNumber, _name));
+        people.push(newPerson);
+
+        // another option with mapping
+        nameToFavoriteNumber[_name] = _favoriteNumber;
+    }
+
+    // calldata, memory and storage
+    /**
+    * Memory and calldata
+    * Mean that data will only exist for short time
+    * before execution and after execution, will nolonger there
+    *
+    * With calldata, you cannot alter variable ie cannot be overridden
+    * while with memory, it is possible and safe
+    *
+    * Storage means data will even be available even after function execution
+    */
+
 }
 
-// store value
-function store(uint256 _favoriteNumber) public {
-    favoritenumber = _favoriteNumber;
-}
 
-function retrieve() public view return(uint256) {
-    return favoriteNumber;
-}
