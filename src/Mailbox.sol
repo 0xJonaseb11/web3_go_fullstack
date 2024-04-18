@@ -6,6 +6,10 @@ contract Mailbox {
     // state variables
     address public owner;
     mapping(address => string) private messages;
+    mapping(address => uint256) private lastSentMessage;
+
+    // define a list of banned words
+    string[] private bannedWords = ["spam", "sale", "promotion"];
 
     // events
     event MessageSent(address indexed sender, string message);
@@ -18,15 +22,42 @@ contract Mailbox {
 
     // permissions
     modifier onlyOwner() {
-        require(msg.sender = owner), "only owner can call this contract");
+        require(msg.sender = owner, "only owner can call this function");
         _;
     }
 
     // send message
     function sendMessage(address _recipient, string memory _message) external {
         require(bytes(_message).length > 0, "Message should not be empty");
+        // check if message contains banned words
+        require(!bannedWords(_message), "Message contains banned words");
+        // Rate limiting: Allow only one message per 10 minutes
+        require(block.timestamp - lastMessafeTime[msg.sender], "Rate limit exceeded");
         messages[_recipient] = _message;
+        // Update last message time
+        lastMessageTime[msg.sender] = block.timestamp;
         emit MessageSent(msg.sender, _message);
+    }
 
+    function readMessage() external view returns (string memory) {
+        string memory message = messages[msg.sender];
+        emit MessageRead(msg.sender);
+        return message;
+    }
+
+    // function to check if message contains banned words
+    function containsBannedWords(string memory _message) private view returns(bool) {
+        for (uint256 i = 0; i < bannedWords.length; i++) {
+            if (bytes(_message).length >= bytes(bannedWords[i].lenght && 
+            keccak256(abi.encodePacked(_message)) == keccak256(abi.encodePacked(bannedWords[i])))) {
+            return true;
+        }
+      }
+      return false;
+    }
+
+    // withdraw funds in caze any sent
+    function withdraw() external onlyOwner {
+        payable(owner).transfer(address(this).balance);
     }
 }
