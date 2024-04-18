@@ -8,7 +8,7 @@ contract SimpleStorage {
     Person public person = Person({favoriteNumber: 5, name: "Jonas"});
 
 
-    struct Person {
+    struct People {
         uint256 favoriteNumber;
         string name;
     }
@@ -17,4 +17,8 @@ contract SimpleStorage {
 // store value
 function store(uint256 _favoriteNumber) public {
     favoritenumber = _favoriteNumber;
+}
+
+function retrieve() public view return(uint256) {
+    return favoriteNumber;
 }
