@@ -2,6 +2,9 @@
 pragma solidity ^0.8.8;
 
 contract SimpleStorage {
+
+    // EVM, Ethereum Virtual Machine
+    // Avalanche, Fantom, Polygon
     
     // state variables
     uint256 favoriteNumber;
