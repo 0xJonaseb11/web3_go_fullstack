@@ -2,7 +2,12 @@
 pragma solidity ^0.8.8;
 
 import { AggregatorV3Interface } from "@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface";
+
+import { PriceConverter} from "./PriceConverter.sol";
+
 contract FundMe {
+
+    using PriceConverter for uint256;
 
 
         uint256 public minimumUsd = 50 * 1e18;
@@ -14,7 +19,7 @@ contract FundMe {
     function fund() public payable {
 
         // Want to be able to set a minimum fund amount in USD
-        require(msg.value > minimumUsd, "Didn't send enough funds");     
+        require(msg.value.getConversionRate() > minimumUsd, "Didn't send enough funds");     
         funders.push(msg.sender);   
         addressToAmountFunded[msg.sender] = msg.value;
     }

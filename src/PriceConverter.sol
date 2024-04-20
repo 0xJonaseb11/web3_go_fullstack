@@ -3,10 +3,10 @@ pragma solidity ^0.8.8;
 
 import { AggregatorV3Interface } from "@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface";
 
-
 library PriceConverter {
 
-    function getPrice() public view returns(uint256) {
+
+    function getPrice() internal view returns(uint256) {
         // ABI
         //Address 
         AggregatorV3Interface priceFeed = AggregatorV3Interface(/**Address */); 
@@ -17,12 +17,12 @@ library PriceConverter {
         return uint256(price * 1e10); // 1**10 == 10000000000 
     }
 
-    function getVersion() public view returns(uint256) {
+    function getVersion() internal view returns(uint256) {
         AggregatorV3Interface priceFeed = AggregatorV2Interface(/**Address */);
         return priceFeed.version();
     }
 
-    function getConversionRate(uint256 ethAmount) public view returns(uint256) {
+    function getConversionRate(uint256 ethAmount) internal view returns(uint256) {
         uint256 ethPrice = getPrice();
         // Always multiply before you divide
         uint256 ethAmountInUsd = (ethPrice * ethAmount) / 1e18;
