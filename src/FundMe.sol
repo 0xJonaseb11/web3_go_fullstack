@@ -14,7 +14,18 @@ contract FundMe {
 
         address[] public funders;
 
+        address public owner;
+
         mapping(address => uint256) public addressToAmountFunded;
+
+        constructor() {
+            owner = msg.sender;
+        }
+
+        modifier onlyOwner() {
+            require(owner == msg.sender, "Only owner can call this function");
+            _;
+        }
 
     function fund() public payable {
 
@@ -23,7 +34,7 @@ contract FundMe {
         funders.push(msg.sender);   
         addressToAmountFunded[msg.sender] = msg.value;
     }
-    function withdraw() public {
+    function withdraw() public onlyOwner {
         /** starting index, ending index, step amount */
         for (uint256 funderIndex = 0; funderIndex < funders.length; funderIndex++) {
             address funder = funders[funderIndex];
@@ -40,9 +51,11 @@ contract FundMe {
         // send
         bool sendSuccess = payable(msg.sender).send(address(this).balance);
         require(sendSuccess, "Send Failed");
-        // call
-        (bool callSuccess, bytes dataReturned) = payable(msg.sender).call{value: address(this).balance}("")
         
+        // call -- Recommended
+        (bool callSuccess, ) = payable(msg.sender).call{value: address(this).balance}("")
+        require(callSucess, "Call Failed");
+
 
 
     }
