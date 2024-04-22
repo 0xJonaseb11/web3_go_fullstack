@@ -5,6 +5,8 @@ import { AggregatorV3Interface } from "@chainlink/contracts/src/v0.8/interfaces/
 
 import { PriceConverter} from "./PriceConverter.sol";
 
+error NotOwner();
+
 contract FundMe {
 
     using PriceConverter for uint256;
@@ -14,17 +16,23 @@ contract FundMe {
 
         address[] public funders;
 
-        address public owner;
+        address public immutable i_owner;
 
         mapping(address => uint256) public addressToAmountFunded;
 
         constructor() {
-            owner = msg.sender;
+            i_owner = msg.sender;
         }
 
         modifier onlyOwner() {
-            require(owner == msg.sender, "Only owner can call this function");
-            _;
+            require(i_owner == msg.sender, "Only owner can call this function");
+           
+
+            /// alternative
+            if (msg.sender != i_owner) {
+                revert NotOwner();
+            }
+             _;
         }
 
     function fund() public payable {
