@@ -10,7 +10,7 @@ contract FundMe {
     using PriceConverter for uint256;
 
 
-        uint256 public minimumUsd = 50 * 1e18;
+        uint256 public constant MINIMUM_USD = 50 * 1e18;
 
         address[] public funders;
 
@@ -30,7 +30,7 @@ contract FundMe {
     function fund() public payable {
 
         // Want to be able to set a minimum fund amount in USD
-        require(msg.value.getConversionRate() > minimumUsd, "Didn't send enough funds");     
+        require(msg.value.getConversionRate() > MINIMUM_USD, "Didn't send enough funds");     
         funders.push(msg.sender);   
         addressToAmountFunded[msg.sender] = msg.value;
     }
