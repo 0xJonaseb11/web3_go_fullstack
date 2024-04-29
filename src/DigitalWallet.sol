@@ -20,7 +20,7 @@ contract DigitalWallet {
         // Get a reference to the wallet data in storage
         Wallet memory wallet = wallets[walletAddress];
         // Validate the wallet owner
-        require(msg.sender = walletAddress, "Unauthorised update");
+        require(msg.sender == walletAddress, "Unauthorised update");
         // Update the wallet's balance
         wallet.balance = newBalance;
         // Emit an event to the balance update
