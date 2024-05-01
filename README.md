@@ -17,4 +17,4 @@ I will use Solidity to do a whole bunch of smart contracts as well as use Javasc
 
 -----------
 
-@Jaz-3-0
+@0xJonaseb11
