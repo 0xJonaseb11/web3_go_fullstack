@@ -4,7 +4,7 @@
 
 ```sh
 # Install chainlink contracts
-npm install @chainlinkcontracts --save
+npm install @chainlink/contracts --save
 # Via yarn
 yarn add @chainlink/contracts
 
